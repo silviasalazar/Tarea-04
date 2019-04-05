@@ -2,6 +2,84 @@
 ### Tarea 04 de la unidad 4 de POO
 
 ## 1. Considera el siguiente fragmento de programa:
+```csharp
+using System;
+
+class A
+
+    {
+
+    public int a;
+
+    public A()
+
+        {
+
+        a = 10;
+
+        }
+
+    public _______ string Display()
+
+      {
+
+      return a.ToString();
+
+      }
+
+    }
+
+class B:A
+
+   {
+
+   public int b;
+
+   public B():base()
+
+   {
+
+    b = 15;
+
+   }
+
+ 
+
+  // #########################################
+
+  //  #  Después de contestar la pregunta 1                  
+
+ //   #  Redefine el método Display( ) en este espacio,  debe regresar el campo b como string.
+
+ //  #########################################
+
+ 
+
+}
+
+ class Program
+
+  {
+
+   public static void Main()
+
+   {
+
+  A objA = new A();
+
+  B objB = new B();
+
+  Console.WriteLine(objA.Display()); ////  (1 )
+
+  Console. WriteLine(objB.Display()); ////  ( 2)
+
+  }
+
+  }
+
+```
+
+**PROGRAMA TERMINADO**
 
 ```csharp
 using System;
@@ -96,12 +174,10 @@ class B:A
 
 
 **1.1. ¿Qué valores imprimen las lineas (1) y (2) ?**
-10 
-10
+10, 10
 
 **1.2.  Redefine el método Display en el espacio indicado, una vez redefinido el método, ¿qué valores imprimen las lineas (1) y (2) ?.**
-10
-15
+10,15
 
 **1.3. ¿Que palabra debes agregar en la linea (public _______ string Display()) al definir A.Display()?**
 
@@ -387,6 +463,148 @@ Porque es un método abstracto y cuando se declara "abstrac" no lleva un cuerpo 
 Tendiamos que desarrollar el cuerpo del método.
 
 **3. Implementa el programa utilizando interfaces en lugar de herencia.**
+```csharp
+using System;
+using System.Collections.Generic;
+
+namespace tarea42
+{
+    interface IMusico
+    {
+        void Afina();
+    }
+abstract class Musico
+
+    {
+
+    public string nombre;
+
+    public Musico (string n)
+        {
+         nombre = n;
+        }
+
+ 
+   public abstract string  Saluda();   
+   
+   public string Display()   //C
+
+      { 
+
+       return nombre;
+
+      }
+   }
+
+class Bajista: Musico,IMusico
+  {
+    public string bajo;
+        public Bajista (string n, string bajo ):base(n)
+    {
+        this.bajo=bajo;
+    }
+
+    public override string Saluda()
+      {
+          return String.Format("Hola, mi nombre es {0}",nombre);
+
+      }
+     public void Afina()
+     {
+         Console.WriteLine(" y afino mi bajo");
+     }
+      
+ }
+
+class Guitarrista: Musico, IMusico
+     {
+
+     public string guitarra;
+
+      // Falta el constructor y otras cosas??
+     public Guitarrista(string nombre, string guitarra): base(nombre)
+     {
+         this.guitarra=guitarra;
+     }
+     public override string Saluda()
+      {
+          return String.Format("Hola, mi nombre es {0}",nombre);
+
+      }
+     public void Afina()
+     {
+         Console.WriteLine("y afino mi guitarra");
+     }
+ }
+ class Vocalista: Musico, IMusico
+     {
+
+     public string voz;
+     public Vocalista(string nombre, string voz): base(nombre)
+     {
+         this.voz=voz;
+     }
+
+     public override string Saluda()
+      {
+          return String.Format("Hola, mi nombre es {0}",nombre);
+
+      }
+     public void Afina()
+     {
+         Console.WriteLine("y afino mi voz");
+     }
+  }
+  class Pianista: Musico, IMusico
+     {
+
+     public string piano;
+     public Pianista(string nombre, string piano): base(nombre)
+     {
+         this.piano=piano;
+     }
+     public override string Saluda()
+      {
+          return String.Format("Hola, mi nombre es {0}",nombre);
+
+      }
+     public void Afina()
+     {
+         Console.WriteLine("y afino mi piano");
+     }
+  }
+class Program
+ {
+    static void Main()
+   {
+      
+    // m = new Musico(); //(D)
+   
+
+    Bajista b = new Bajista("Flea","bajo");
+    Guitarrista g = new Guitarrista("Santana","guitarra");
+    Vocalista v=new Vocalista("Sia","voz");
+    Pianista p=new Pianista("Alexandra","piano");
+     List<Musico>musicos=new List<Musico>();
+    musicos.Add(b);
+    musicos.Add(g);
+    musicos.Add(v);
+    musicos.Add(p);
+  
+
+  foreach (Musico mu in musicos)
+  {
+      Console.WriteLine(mu.Saluda());
+      (mu as IMusico).Afina();
+      
+  }
+}
+}
+}
+
+```
+
+**Otra manera también podría ser:**
 
 ````csharp
 
